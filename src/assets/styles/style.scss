@@ -1,0 +1,39 @@
+.site-body {
+    display: flex;
+
+    .users {
+        background-color: antiquewhite;
+        flex-basis: 30%;
+
+        .user {
+            padding: 10px;
+            border: solid 1px;
+            transition: 0.3s;
+
+            &:hover {
+                background-color: bisque;
+                transform: scale(1.03);
+                cursor: pointer;
+            }
+        }
+    }
+
+    .posts {
+        background-color: aliceblue;
+        flex-basis: 70%;
+        padding: 5px;
+
+        .post {
+            padding: 10px;
+            border: solid 1px;
+            text-align: center;
+            transition: 0.3s;
+
+            &:hover {
+                background-color:azure;
+                transform: translate(5px, 2px);
+                cursor: pointer;
+            }
+        }
+    }
+}

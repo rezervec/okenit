@@ -1,18 +1,39 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="site-body">
+    <div class="users">
+      <div
+      v-for="user in users"
+      :key="user.id"
+      class="user"
+      >
+      <p>{{ user.name }}</p>
+      </div>
+    </div>
+    <div class="posts">
+      <router-link
+      v-for="post in posts"
+      :key="post.id"
+      :post="post"
+      tag="div"
+      class="post"
+      :to="{ name: 'post', params: { id: post.id } }"
+      >
+      <p>{{ post.title }}</p>
+      </router-link>
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import users from '@/placeholder/users'
+import posts from '@/placeholder/posts'
 
 export default {
-  name: 'HomeView',
-  components: {
-    HelloWorld
+  data() {
+    return {
+      users,
+      posts
+    }
   }
 }
 </script>
