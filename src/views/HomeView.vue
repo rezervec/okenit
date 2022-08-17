@@ -5,13 +5,14 @@
       v-for="user in users"
       :key="user.id"
       class="user"
+      v-on:click="activeUser = user.id"
       >
       <p>{{ user.name }}</p>
       </div>
     </div>
     <div class="posts">
       <router-link
-      v-for="post in posts"
+      v-for="post in postFilter"
       :key="post.id"
       :post="post"
       tag="div"
@@ -32,7 +33,15 @@ export default {
   data() {
     return {
       users,
-      posts
+      posts,
+      activeUser: 0
+    }
+  },
+  computed: {
+    postFilter: function () {
+      if(this.activeUser)
+        return this.posts.filter(post => post.userId == this.activeUser)
+      else return posts
     }
   }
 }
