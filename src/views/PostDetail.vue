@@ -1,5 +1,10 @@
 <template>
   <div class="post-detail">
+
+    <v-alert
+      :messages="messages"
+    />
+
     <router-link class="post-nav" to="/">На главную</router-link>
     <div class="post-info">
       <div class="post-content">
@@ -8,7 +13,7 @@
         <tt>POST ID:{{ post.id }}<br>POST USERID:{{ post.userId }}</tt>
       </div>
       <div class="post-autor">
-        <h3>Autor:</h3>
+        <h3>Autor</h3>
         <p>{{ user.name }}</p>
         <p>{{ user.email }}</p>
         <tt>USER ID:{{ user.id }}</tt>

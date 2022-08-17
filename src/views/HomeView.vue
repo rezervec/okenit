@@ -1,5 +1,10 @@
 <template>
   <div class="site-body">
+
+    <v-alert
+      :messages="messages"
+    />
+
     <div class="users">
       <div
       class="user"
@@ -12,7 +17,7 @@
       v-for="user in users"
       :key="user.id"
       class="user"
-      v-on:click="activeUser = user.id"
+      v-on:click="activeUser = user.id; showAlert()"
       :class="{_active: user.id == activeUser}"
       >
         <p>{{ user.name }}</p>
@@ -38,13 +43,15 @@
 <script>
 import users from '@/placeholder/users'
 import posts from '@/placeholder/posts'
+import vAlert from '@/components/alerts/v-alert'
 
 export default {
   data() {
     return {
       users,
       posts,
-      activeUser: 0
+      activeUser: 0,
+      messages: []
     }
   },
   computed: {
@@ -59,6 +66,16 @@ export default {
       if (!value) return ''
       value = value.toString()
       return value.charAt(0).toUpperCase() + value.slice(1)
+    }
+  },
+  components: {
+    vAlert
+  },
+  methods: {
+    showAlert() {
+      this.messages.unshift(
+        {name: `User Articles #${this.activeUser}`, id: Date.now().toLocaleString()}
+      )
     }
   }
 }
