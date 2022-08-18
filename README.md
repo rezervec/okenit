@@ -1,24 +1,8 @@
-# vue2_app
-
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Блог на Vue2 ##
+Функционал:
+- При клике на пользователя - отображаются написанные им посты. А также выводится уведомление с id пользователя.
+- При клике на пост - выполняется переход через vue-router на страничку поста.
+    - На страничке поста указана информация автора, сама статья и комментарии к этому посту.
+========================
+#### New:
+Реализовал возможность добавлять комментарии к постам. Оставленный комментарий сохраняется в Local Storage пользователя. Возможно много костылей, но в следующих версиях поправлю!

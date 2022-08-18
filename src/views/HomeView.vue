@@ -74,7 +74,7 @@ export default {
   methods: {
     showAlert() {
       this.messages.unshift(
-        {name: `User Articles #${this.activeUser}`, id: Date.now().toLocaleString()}
+        {name: `User Articles #${users[this.activeUser-1].id}`, id: Date.now().toLocaleString()}
       )
     }
   }

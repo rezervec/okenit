@@ -1,6 +1,9 @@
+$main-color:rgb(255, 255, 255);
+$bg-color:rgb(43, 52, 57);
+
 body {
     margin: 30px 50px;
-    background-color: rgb(43, 52, 57);
+    background-color: $bg-color;
 }
 
 tt {
@@ -11,7 +14,7 @@ tt {
 
 .site-body {
     display: flex;
-    color: rgb(255, 255, 255);
+    color: $main-color;
 
     .users {
         flex-basis: 30%;
@@ -59,7 +62,6 @@ tt {
             &:not(:first-child) {margin-top: 3px;}
 
             &:hover {
-                // background-color:azure;
                 transform: scale(1.01);
                 box-shadow: inset 0px 0px 2px 0px rgb(152, 208, 254);
                 background-color: rgba(66, 92, 113, 1);
@@ -151,6 +153,67 @@ tt {
             span {color: rgb(136, 179, 186)}
 
             p {text-indent:1em}
+        }
+
+        .add-comment {
+            display: flex;
+            align-items: center;
+
+            button {
+                font-weight: bold;
+                text-transform: uppercase;                
+                height: 50px;
+                align-self: center;
+                background-color: rgb(145, 208, 218);
+                transition: .3s;
+
+                &:hover {
+                    background-color: aquamarine;
+                    cursor: pointer;
+                }
+            }
+
+            input {
+                margin-right: 20px;
+                background-color: rgb(170, 204, 213);
+                height: 30px;
+                font-size: 1.1em;
+            }
+        }
+
+        .your-comment {
+            &:nth-child(odd) {
+                color: rgb(136, 179, 186);
+                font-size: 19px;
+                border-top: solid 1px rgb(134, 186, 197);
+                border-radius: 7px;
+                width: 80%;
+                padding: 30px 10px 0;
+                font-weight: bold;
+
+                span{color:$main-color}
+
+                button {
+                    float: right;
+                    background-color: rgb(152, 196, 186);
+                    transition: .3s;
+                    height: 30px;
+
+                    &:hover {
+                        cursor: pointer;
+                        background-color: rgb(238, 157, 157);
+                    }
+                }
+            }
+            &:nth-child(even) {
+                color: aliceblue;
+                border-bottom: solid 1px rgb(134, 186, 197);
+                border-radius: 7px;
+                width: 80%;
+                padding: 0 10px 40px;
+                margin-bottom: 10px;
+                text-indent:1em
+            }
         }
     }
 }

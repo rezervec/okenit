@@ -1,10 +1,5 @@
 <template>
   <div class="post-detail">
-
-    <v-alert
-      :messages="messages"
-    />
-
     <router-link class="post-nav" to="/">На главную</router-link>
     <div class="post-info">
       <div class="post-content">
@@ -21,6 +16,23 @@
     </div>
     <div class="comments">
       <h2>Comments</h2>
+      
+      <p class="add-comment">
+        <b>Your email:</b>
+        <input v-model="newVisitor"><br>
+        <b>Your comment:</b>
+        <input v-model="newComment"><br>
+        <button @click="addVisitor">Publish</button>
+      </p>
+      <p
+        v-for="(visitor, n) in visitors"
+        :key="visitor.index"
+        class="your-comment"
+      >
+        <span v-if="n%2==0">User(you):</span> {{ visitor }}
+        <button v-if="n%2==0" @click="removeVisitor(n)">Delete</button>
+      </p>
+
         <div
         class="comment"
         v-for="comment in commentsFilter"
@@ -44,7 +56,10 @@ export default {
     return {
       posts: null,
       user: null,
-      comments
+      comments,
+      visitors: [],
+      newVisitor: null,
+      newComment: null
     }
   },
   created() {
@@ -60,11 +75,41 @@ export default {
       return result
     }
   },
-    filters: {
+  filters: {
     capitalize: function (value) {
       if (!value) return ''
       value = value.toString()
       return value.charAt(0).toUpperCase() + value.slice(1)
+    }
+  },
+  mounted() {
+    if (localStorage.getItem(`visitors${this.post.id}`)) {
+      try {
+        this.visitors = JSON.parse(localStorage.getItem(`visitors${this.post.id}`));
+        console.log('mointed')
+      } catch(e) {
+        localStorage.removeItem(`visitors${this.post.id}`);
+      }
+    }
+  },
+  methods: {
+    addVisitor() {
+      if (!this.newVisitor || !this.newComment) return
+
+      this.visitors.unshift(this.newComment)
+      this.newComment = ''
+      this.visitors.unshift(this.newVisitor)
+      this.newVisitor = ''
+      this.saveVisitor()
+    },
+    removeVisitor(el) {
+      this.visitors.splice(el, 2)
+      this.saveVisitor()
+    },
+    saveVisitor() {
+      const parsed = JSON.stringify(this.visitors)
+      localStorage.setItem(`visitors${this.post.id}`, parsed)
+      console.log(parsed)
     }
   }
 }
