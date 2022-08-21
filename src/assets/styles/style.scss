@@ -158,6 +158,7 @@ tt {
         .add-comment {
             display: flex;
             align-items: center;
+            flex-wrap: wrap;
 
             button {
                 font-weight: bold;
@@ -178,6 +179,7 @@ tt {
                 background-color: rgb(170, 204, 213);
                 height: 30px;
                 font-size: 1.1em;
+                min-width: 170px;
             }
         }
 

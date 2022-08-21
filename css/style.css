@@ -1,0 +1,201 @@
+body {
+  margin: 30px 50px;
+  background-color: rgb(43, 52, 57);
+}
+
+tt {
+  display: block;
+  text-align: end;
+  color: rgb(162, 162, 162);
+}
+
+.site-body {
+  display: flex;
+  color: rgb(255, 255, 255);
+}
+.site-body .users {
+  flex-basis: 30%;
+}
+.site-body .users .user {
+  background-color: rgb(102, 127, 132);
+  padding: 2px;
+  border: solid black 1px;
+  transition: 0.2s;
+}
+.site-body .users .user:not(:first-child) {
+  margin-top: 1px;
+}
+.site-body .users .user:hover {
+  background-color: rgb(122, 159, 165);
+  transform: scale(1.02);
+  cursor: pointer;
+}
+.site-body .users .user p {
+  margin: 0.5em;
+}
+.site-body .users .user:first-child {
+  margin-bottom: 20px;
+  padding: 20px;
+  text-align: center;
+}
+.site-body .users .user._active {
+  box-shadow: inset 0px 0px 5px 0px rgb(61, 65, 65);
+  background-color: rgb(108, 163, 180);
+}
+.site-body .posts {
+  flex-basis: 70%;
+  padding: 5px;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-rows: repeat(auto-fit, 100px);
+}
+.site-body .posts .post {
+  background-color: rgba(66, 92, 113, 0.4);
+  padding: 10px;
+  border: solid black 1px;
+  text-align: center;
+  transition: 0.3s;
+}
+.site-body .posts .post:not(:first-child) {
+  margin-top: 3px;
+}
+.site-body .posts .post:hover {
+  transform: scale(1.01);
+  box-shadow: inset 0px 0px 2px 0px rgb(152, 208, 254);
+  background-color: rgb(66, 92, 113);
+  cursor: pointer;
+}
+
+.post-detail {
+  color: rgb(255, 255, 255);
+  margin-top: 20px;
+}
+.post-detail .post-nav {
+  margin-left: 20px;
+  font-size: 20px;
+  color: rgb(167, 219, 227);
+  background-color: rgba(167, 219, 227, 0.1);
+  text-decoration: none;
+  padding: 7px;
+  position: relative;
+  transition: 0.2s;
+}
+.post-detail .post-nav:hover {
+  background-color: rgba(167, 219, 227, 0.2);
+  box-shadow: 0 0 2px rgb(144, 188, 195);
+}
+.post-detail .post-nav::after {
+  content: "";
+  position: absolute;
+  background-color: rgb(190, 227, 233);
+  width: 40px;
+  height: 20px;
+  left: -10px;
+  bottom: 50%;
+  transform: translate(-100%, 50%);
+  -webkit-clip-path: polygon(0 50%, 30% 0, 30% 30%, 100% 30%, 100% 70%, 30% 70%, 30% 100%, 0 50%);
+          clip-path: polygon(0 50%, 30% 0, 30% 30%, 100% 30%, 100% 70%, 30% 70%, 30% 100%, 0 50%);
+}
+.post-detail .post-info {
+  margin-top: 50px;
+  display: flex;
+}
+.post-detail .post-info .post-content {
+  flex-basis: 80%;
+  text-align: center;
+}
+.post-detail .post-info .post-content div {
+  margin: auto;
+  width: 80%;
+}
+.post-detail .post-info .post-content tt {
+  text-align: left;
+}
+.post-detail .post-info .post-autor {
+  flex-basis: 20%;
+  align-self: end;
+}
+.post-detail .post-info .post-autor h3 {
+  border-bottom: solid 2px rgb(103, 135, 163);
+  padding-bottom: 10px;
+  color: rgb(157, 192, 238);
+  text-align: center;
+}
+.post-detail .post-info .post-autor p {
+  margin: 0;
+  font-size: 1.2em;
+  text-align: center;
+}
+.post-detail .comments h2 {
+  margin-top: 60px;
+  padding: 20px;
+  border-bottom: solid 1px rgb(66, 92, 113);
+  color: rgb(157, 228, 238);
+}
+.post-detail .comments .comment {
+  border: solid 1px rgb(102, 127, 132);
+  border-radius: 7px;
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 80%;
+}
+.post-detail .comments .comment span {
+  color: rgb(136, 179, 186);
+}
+.post-detail .comments .comment p {
+  text-indent: 1em;
+}
+.post-detail .comments .add-comment {
+  display: flex;
+  align-items: center;
+}
+.post-detail .comments .add-comment button {
+  font-weight: bold;
+  text-transform: uppercase;
+  height: 50px;
+  align-self: center;
+  background-color: rgb(145, 208, 218);
+  transition: 0.3s;
+}
+.post-detail .comments .add-comment button:hover {
+  background-color: aquamarine;
+  cursor: pointer;
+}
+.post-detail .comments .add-comment input {
+  margin-right: 20px;
+  background-color: rgb(170, 204, 213);
+  height: 30px;
+  font-size: 1.1em;
+}
+.post-detail .comments .your-comment:nth-child(odd) {
+  color: rgb(136, 179, 186);
+  font-size: 19px;
+  border-top: solid 1px rgb(134, 186, 197);
+  border-radius: 7px;
+  width: 80%;
+  padding: 30px 10px 0;
+  font-weight: bold;
+}
+.post-detail .comments .your-comment:nth-child(odd) span {
+  color: rgb(255, 255, 255);
+}
+.post-detail .comments .your-comment:nth-child(odd) button {
+  float: right;
+  background-color: rgb(152, 196, 186);
+  transition: 0.3s;
+  height: 30px;
+}
+.post-detail .comments .your-comment:nth-child(odd) button:hover {
+  cursor: pointer;
+  background-color: rgb(238, 157, 157);
+}
+.post-detail .comments .your-comment:nth-child(even) {
+  color: aliceblue;
+  border-bottom: solid 1px rgb(134, 186, 197);
+  border-radius: 7px;
+  width: 80%;
+  padding: 0 10px 40px;
+  margin-bottom: 10px;
+  text-indent: 1em;
+}/*# sourceMappingURL=style.css.map */

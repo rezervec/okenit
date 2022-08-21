@@ -39,7 +39,7 @@
             if(!this.messages.length) return
             console.log('GO')
             vm.messages.splice(vm.messages.length - 1, 1)
-          }, 3000)
+          }, 2000)
         }
       }
     },
