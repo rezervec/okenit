@@ -37,7 +37,7 @@
         if(this.messages.length) {
           setTimeout( () => {
             if(!this.messages.length) return
-            console.log('GO')
+            // console.log('GO')
             vm.messages.splice(vm.messages.length - 1, 1)
           }, 2000)
         }

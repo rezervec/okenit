@@ -1,24 +1,19 @@
 <template>
   <div class="site-body">
-
-    <v-alert
-      :messages="messages"
-    />
-
     <div class="users">
       <div
-      class="user"
-      v-on:click="activeUser = 0"
-      :class="{_active: activeUser == 0}"
+        class="user"
+        v-on:click="activeUser = 0"
+        :class="{_active: activeUser == 0}"
       >
         <b>All posts</b>
       </div>
       <div
-      v-for="user in users"
-      :key="user.id"
-      class="user"
-      v-on:click="activeUser = user.id; showAlert()"
-      :class="{_active: user.id == activeUser}"
+        v-for="user in USERS"
+        :key="user.id"
+        class="user"
+        v-on:click="activeUser = user.id"
+        :class="{_active: user.id == activeUser}"
       >
         <p>{{ user.name }}</p>
         <tt>USER ID:{{ user.id }}</tt>
@@ -26,12 +21,12 @@
     </div>
     <div class="posts">
       <router-link
-      v-for="post in postFilter"
-      :key="post.id"
-      :post="post"
-      tag="div"
-      class="post"
-      :to="{ name: 'post', params: { id: post.id } }"
+        v-for="post in postFilter"
+        :key="post.id"
+        :post="post"
+        tag="div"
+        class="post"
+        :to="{ name: 'post', params: { id: post.id } }"
       >
         <tt>POST ID:{{ post.id }} - POST USERID:{{ post.userId }}</tt>
         <p>{{ post.title | capitalize}}</p>
@@ -41,24 +36,23 @@
 </template>
 
 <script>
-import users from '@/placeholder/users'
-import posts from '@/placeholder/posts'
-import vAlert from '@/components/alerts/v-alert'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   data() {
     return {
-      users,
-      posts,
-      activeUser: 0,
-      messages: []
+      activeUser: 0
     }
   },
   computed: {
+    ...mapGetters([
+      'USERS',
+      'POSTS'
+    ]),
     postFilter: function () {
       if(this.activeUser)
-        return this.posts.filter(post => post.userId == this.activeUser)
-      else return posts
+        return this.POSTS.filter(post => post.userId == this.activeUser)
+      else return this.POSTS
     }
   },
   filters: {
@@ -68,15 +62,15 @@ export default {
       return value.charAt(0).toUpperCase() + value.slice(1)
     }
   },
-  components: {
-    vAlert
-  },
   methods: {
-    showAlert() {
-      this.messages.unshift(
-        {name: `User Articles #${users[this.activeUser-1].id}`, id: Date.now().toLocaleString()}
-      )
-    }
+    ...mapActions([
+      'GET_USERS',
+      'GET_POSTS'
+    ])
+  },
+  mounted() {
+    this.GET_USERS()
+    this.GET_POSTS()
   }
 }
 </script>
